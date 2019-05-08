@@ -21,12 +21,10 @@ var Game = {
         this.framesCounter = 0;
       }
       this.drawall();
-      // this.moveAll();
     }, 1000 / this.fps);
   },
   reset: function() {
     this.grid = new Grid(this.gridWidth, this.gridHeight, this.ctx);
-    // this.solder = new Solder(this.ctx);
     this.framesCounter = 0;
   },
   clear: function() {
@@ -34,14 +32,5 @@ var Game = {
   },
   drawall: function() {
     this.grid.draw(this.framesCounter);
-    // this.solder.draw(this.framesCounter);
   }
-  // playerSwitch: function() {
-  //   if (currentPlayer == "red") {
-  //     currentPlayer = "blue";
-
-  //   } else {
-  //     currentPlayer = "red";
-  //   }
-  // },
 };

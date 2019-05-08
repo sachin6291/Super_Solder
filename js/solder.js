@@ -99,7 +99,7 @@ class Solder {
     if (framesCounter % 6 === 0) {
       this.img.frameIndex += 1;
       this.imgA.frameIndex += 1;
-      this.blueAttack.frameIndex += 1;
+      this.blueMove.frameIndex += 1;
       if (this.img.frameIndex > 2) {
         this.img.frameIndex = 0;
       }
@@ -112,12 +112,13 @@ class Solder {
     }
   }
   playerSwich() {
-    if (currentPlayer == "red") {
-      currentPlayer = "blue";
+    if (this.currentPlayer == "red") {
+      this.currentPlayer = "blue";
       this.moveCounter = 3;
     } else {
-      currentPlayer = "red";
+      this.currentPlayer = "red";
       this.moveCounter = 3;
     }
+    console.log(this.currentPlayer);
   }
 }

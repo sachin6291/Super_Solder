@@ -1,0 +1,1 @@
+class SolderBlue extends Solder {}

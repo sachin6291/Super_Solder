@@ -1,4 +1,3 @@
-//grid array 15 X 10
 //create an array of 2 dimention that represents a map 15 x 10
 
 class Grid {
@@ -10,6 +9,7 @@ class Grid {
     this.img.src = "images/tile_grass.png";
     this.arrMap = [];
     this.solder = new Solder(this.ctx, 4, 3, 5, 7);
+
     for (let i = 0; i < 10; i++) {
       this.arrMap.push([]);
       for (let j = 0; j < 15; j++) {
@@ -54,10 +54,10 @@ class Grid {
   }
 
   setListeners() {
-    //40 abajo, 38 arriba, 37 izquierda, 39 derecha
+    //40 abajo, 38 arriba, 37 izquierda, 39 derecha, 32 space
     document.onkeydown = event => {
       if (event.keyCode == 32) {
-        this.solder.playerSwich;
+        this.solder.playerSwich();
       }
       if (this.solder.moveCounter > 0) {
         if (event.keyCode == 40) {
@@ -66,12 +66,12 @@ class Grid {
               this.moveGrass();
               this.solder.gridY += 1;
               this.recurentListener();
-            } else if (this.solder.currentPlayer == "blue") {
-              if (this.solder.gridBlueY < this.this.arrMap.length - 1) {
-                this.moveGrass();
-                this.solder.gridBlueX += 1;
-                this.recurentListener();
-              }
+            }
+          } else if (this.solder.currentPlayer == "blue") {
+            if (this.solder.gridBlueY < this.arrMap.length - 1) {
+              this.moveGrass();
+              this.solder.gridBlueY += 1;
+              this.recurentListener();
             }
           }
         } else if (event.keyCode === 39) {
@@ -82,7 +82,7 @@ class Grid {
               this.recurentListener();
             }
           } else if (this.solder.currentPlayer == "blue") {
-            if (this.solder.gridBlueX < this.this.arrMap[0].length - 1) {
+            if (this.solder.gridBlueX < this.arrMap[0].length - 1) {
               this.moveGrass();
               this.solder.gridBlueX += 1;
               this.recurentListener();
@@ -124,15 +124,18 @@ class Grid {
     this.arrMap[this.solder.gridY][this.solder.gridX] = 1;
   }
   moveBlueSolder() {
-    this.arrMap[this.solder.gridBluey][this.solder.gridBlueX] = 11;
+    console.log("Me ejecuto");
+    this.arrMap[this.solder.gridBlueY][this.solder.gridBlueX] = 11;
   }
   moveGrass() {
     this.arrMap[this.solder.gridY][this.solder.gridX] = 0;
   }
   recurentListener() {
+    console.log(this.solder.currentPlayer);
     if (this.solder.currentPlayer == "red") {
       this.moveSolder();
     } else if (this.solder.currentPlayer == "blue") {
+      console.log("Me ejecuto");
       this.moveBlueSolder();
     }
     this.draw();
