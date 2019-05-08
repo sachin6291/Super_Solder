@@ -5,6 +5,7 @@ var Game = {
   score: undefined,
   gridWidth: 70,
   gridHeight: 70,
+
   init: function(canvasId) {
     this.canvas = document.getElementById(canvasId);
     this.ctx = this.canvas.getContext("2d");
@@ -34,8 +35,13 @@ var Game = {
   drawall: function() {
     this.grid.draw(this.framesCounter);
     // this.solder.draw(this.framesCounter);
-  },
-  moveAll: function() {
-    this.grid.move();
   }
+  // playerSwitch: function() {
+  //   if (currentPlayer == "red") {
+  //     currentPlayer = "blue";
+
+  //   } else {
+  //     currentPlayer = "red";
+  //   }
+  // },
 };
