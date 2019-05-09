@@ -20,3 +20,13 @@ body button {
 .display {
   display: none;
 }
+#gameover {
+  display: absolute;
+}
+#gameover img {
+  width: 1200px;
+  height: 700px;
+}
+.inlineBlock {
+  display: flex;
+}

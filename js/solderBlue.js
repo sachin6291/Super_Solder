@@ -25,7 +25,7 @@ class SolderBlue {
     this.blueAttackWidth = 85;
     this.blueAttackHeight = 70;
 
-    // this.moveCounter = 3;
+    this.moveCounter = 3;
   }
   drawBlueMove(framesCounter, posX, posY) {
     this.ctx.drawImage(

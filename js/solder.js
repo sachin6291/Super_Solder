@@ -15,8 +15,8 @@ class Solder {
 
     this.gridX = gridX;
     this.gridY = gridY;
-
     this.moveCounter = 3;
+
     this.currentPlayer = "red";
     //----------------------------------------------------------//
 

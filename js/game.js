@@ -24,7 +24,12 @@ var Game = {
     }, 1000 / this.fps);
   },
   reset: function() {
-    this.grid = new Grid(this.gridWidth, this.gridHeight, this.ctx);
+    this.grid = new Grid(
+      this.framesCounter,
+      this.gridWidth,
+      this.gridHeight,
+      this.ctx
+    );
     this.framesCounter = 0;
   },
   clear: function() {
