@@ -8,8 +8,8 @@ class Grid {
     this.img = new Image();
     this.img.src = "images/tile_grass.png";
     this.arrMap = [];
-    this.solder = new Solder(this.ctx, 4, 3, 5, 7);
-
+    this.solder = new Solder(this.ctx, 4, 3);
+    this.solderBlue = new SolderBlue(this.ctx, 5, 7);
     for (let i = 0; i < 10; i++) {
       this.arrMap.push([]);
       for (let j = 0; j < 15; j++) {
@@ -19,6 +19,7 @@ class Grid {
 
     this.moveGrass();
     this.moveSolder();
+    this.moveBlueSolder();
     this.posX = 0;
     this.posY = 0;
     this.setListeners();
@@ -44,7 +45,7 @@ class Grid {
           this.solder.drawM(fr, this.posX, this.posY);
         } else if (this.arrMap[i][j] === 11) {
           //Draw Blue Solder A for attack & M for move & I for idle
-          this.solder.drawBlueMove(fr, this.posX, this.posY);
+          this.solderBlue.drawBlueMove(fr, this.posX, this.posY);
         }
         (this.posX += this.width) * j;
       }
@@ -62,57 +63,81 @@ class Grid {
       if (this.solder.moveCounter > 0) {
         if (event.keyCode == 40) {
           if (this.solder.currentPlayer == "red") {
-            if (this.solder.gridY < this.arrMap.length - 1) {
+            if (
+              this.solder.gridY < this.arrMap.length - 1 &&
+              this.arrMap[this.solder.gridY + 1][this.solder.gridX] == 0
+            ) {
               this.moveGrass();
               this.solder.gridY += 1;
               this.recurentListener();
             }
           } else if (this.solder.currentPlayer == "blue") {
-            if (this.solder.gridBlueY < this.arrMap.length - 1) {
+            if (
+              this.solderBlue.gridY < this.arrMap.length - 1 &&
+              this.arrMap[this.solderBlue.gridY + 1][this.solderBlue.gridX] == 0
+            ) {
               this.moveGrass();
-              this.solder.gridBlueY += 1;
+              this.solderBlue.gridY += 1;
               this.recurentListener();
             }
           }
         } else if (event.keyCode === 39) {
           if (this.solder.currentPlayer == "red") {
-            if (this.solder.gridX < this.arrMap[0].length - 1) {
+            if (
+              this.solder.gridX < this.arrMap[0].length - 1 && //<-- añadido para prohibir que pise
+              this.arrMap[this.solder.gridY][this.solder.gridX + 1] == 0 //<--sobre el soldado enemigo
+            ) {
               this.moveGrass();
               this.solder.gridX += 1;
               this.recurentListener();
             }
           } else if (this.solder.currentPlayer == "blue") {
-            if (this.solder.gridBlueX < this.arrMap[0].length - 1) {
+            if (
+              this.solderBlue.gridX < this.arrMap[0].length - 1 &&
+              this.arrMap[this.solderBlue.gridY][this.solderBlue.gridX + 1] == 0
+            ) {
               this.moveGrass();
-              this.solder.gridBlueX += 1;
+              this.solderBlue.gridX += 1;
               this.recurentListener();
             }
           }
         } else if (event.keyCode === 37) {
           if (this.solder.currentPlayer == "red") {
-            if (this.solder.gridX > 0) {
+            if (
+              this.solder.gridX > 0 &&
+              this.arrMap[this.solder.gridY][this.solder.gridX - 1] == 0
+            ) {
               this.moveGrass();
               this.solder.gridX -= 1;
               this.recurentListener();
             }
           } else if (this.solder.currentPlayer == "blue") {
-            if (this.solder.gridBlueX > 0) {
+            if (
+              this.solderBlue.gridX > 0 &&
+              this.arrMap[this.solderBlue.gridY][this.solderBlue.gridX - 1] == 0
+            ) {
               this.moveGrass();
-              this.solder.gridBlueX -= 1;
+              this.solderBlue.gridX -= 1;
               this.recurentListener();
             }
           }
         } else if (event.keyCode === 38) {
           if (this.solder.currentPlayer == "red") {
-            if (this.solder.gridY > 0) {
+            if (
+              this.solder.gridY > 0 &&
+              this.arrMap[this.solder.gridY - 1][this.solder.gridX] == 0
+            ) {
               this.moveGrass();
               this.solder.gridY -= 1;
               this.recurentListener();
             }
           } else if (this.solder.currentPlayer == "blue") {
-            if (this.solder.gridBlueY > 0) {
+            if (
+              this.solderBlue.gridY > 0 &&
+              this.arrMap[this.solderBlue.gridY - 1][this.solderBlue.gridX] == 0
+            ) {
               this.moveGrass();
-              this.solder.gridBlueY -= 1;
+              this.solderBlue.gridY -= 1;
               this.recurentListener();
             }
           }
@@ -124,18 +149,20 @@ class Grid {
     this.arrMap[this.solder.gridY][this.solder.gridX] = 1;
   }
   moveBlueSolder() {
-    console.log("Me ejecuto");
-    this.arrMap[this.solder.gridBlueY][this.solder.gridBlueX] = 11;
+    this.arrMap[this.solderBlue.gridY][this.solderBlue.gridX] = 11;
   }
   moveGrass() {
-    this.arrMap[this.solder.gridY][this.solder.gridX] = 0;
+    if (this.solder.currentPlayer == "red") {
+      this.arrMap[this.solder.gridY][this.solder.gridX] = 0;
+    } else if (this.solder.currentPlayer == "blue") {
+      this.arrMap[this.solderBlue.gridY][this.solderBlue.gridX] = 0;
+    }
   }
   recurentListener() {
     console.log(this.solder.currentPlayer);
     if (this.solder.currentPlayer == "red") {
       this.moveSolder();
     } else if (this.solder.currentPlayer == "blue") {
-      console.log("Me ejecuto");
       this.moveBlueSolder();
     }
     this.draw();
