@@ -175,6 +175,7 @@ class Grid {
               this.recurentListener();
             } else if (this.downPositionRed()[0] == 11) {
               this.deadBlueSolderDown();
+              this.gameoverBlue();
             }
           } else if (this.turn == "blue") {
             if (
@@ -186,6 +187,7 @@ class Grid {
               this.recurentListener();
             } else if (this.downPositionBlue()[0] == 1) {
               this.deadRedSolderDown();
+              this.gameoverRed();
             }
           }
         } else if (event.keyCode === 39) {
@@ -200,6 +202,7 @@ class Grid {
             } else if (this.rightPositionRed()[0] == 11) {
               console.log("muere rojo de derecha");
               this.deadBlueSolderRight();
+              this.gameoverBlue();
             }
           } else if (this.turn == "blue") {
             if (
@@ -217,6 +220,7 @@ class Grid {
               ][0] == 1
             ) {
               this.deadRedSolderRight();
+              this.gameoverRed();
             }
           }
         } else if (event.keyCode === 37) {
@@ -236,7 +240,7 @@ class Grid {
               ][0] == 11
             ) {
               this.deadBlueSolderLeft();
-              // this.moveBlueGrass();
+              this.gameoverBlue();
             }
           } else if (this.turn == "blue") {
             if (
@@ -254,10 +258,10 @@ class Grid {
               ][0] == 1
             ) {
               this.deadRedSolderLeft();
+              this.gameoverRed();
             }
           }
         } else if (event.keyCode === 38) {
-          console.log("hola 38");
           if (this.turn == "red") {
             if (
               this.solderCheckRed.gridY > 0 &&
@@ -274,7 +278,7 @@ class Grid {
               ][0] == 11
             ) {
               this.deadBlueSolderUp();
-              // this.moveBlueGrass();
+              this.gameoverBlue();
             }
           } else if (this.turn == "blue") {
             if (
@@ -292,6 +296,7 @@ class Grid {
               ][0] == 1
             ) {
               this.deadRedSolderRight();
+              this.gameoverRed();
             }
           }
         }
@@ -471,6 +476,18 @@ class Grid {
     this.solderBlue.forEach(
       solder => (this.arrMap[solder.gridY][solder.gridX] = [11, solder])
     );
+  }
+  gameoverBlue() {
+    if (this.solderBlue.length == 0) {
+      document.getElementById("canvas").className = "display";
+      document.getElementById("gameover").className = "";
+    }
+  }
+  gameoverRed() {
+    if (this.solder.length == 0) {
+      document.getElementById("canvas").className = "display";
+      document.getElementById("gameover").className = "";
+    }
   }
 }
 
