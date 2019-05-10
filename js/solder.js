@@ -3,14 +3,12 @@ class Solder {
     this.ctx = ctx;
 
     this.img = new Image();
-    this.img.src = "images/moving solder.png";
-    // this.posX = 55;
-    // this.posY = 40;
+    this.img.src = "images/red solder move.png";
 
     this.img.frames = 6;
     this.img.frameIndex = 0;
 
-    this.imgWidth = 43;
+    this.imgWidth = 70;
     this.imgHeight = 70;
 
     this.gridX = gridX;
@@ -37,7 +35,7 @@ class Solder {
       0,
       Math.floor(this.img.width / this.img.frames),
       this.img.height,
-      posX + 10,
+      posX,
       posY,
       this.imgWidth,
       this.imgHeight
@@ -72,14 +70,14 @@ class Solder {
       }
     }
   }
-  playerSwich() {
-    if (this.currentPlayer == "red") {
-      this.currentPlayer = "blue";
-      this.moveCounter = 3;
-    } else {
-      this.currentPlayer = "red";
-      this.moveCounter = 3;
-    }
-    console.log(this.currentPlayer);
-  }
+  // playerSwich() {
+  //   if (this.currentPlayer == "red") {
+  //     this.currentPlayer = "blue";
+  //     this.moveCounter = 3;
+  //   } else {
+  //     this.currentPlayer = "red";
+  //     this.moveCounter = 3;
+  //   }
+  //   console.log(this.currentPlayer);
+  // }
 }

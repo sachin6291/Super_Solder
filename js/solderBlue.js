@@ -13,7 +13,7 @@ class SolderBlue {
     this.blueMove.src = "images/blue solder move.png";
     this.blueMove.frames = 6;
     this.blueMove.frameIndex = 0;
-    this.blueMoveWidth = 35;
+    this.blueMoveWidth = 70;
     this.blueMoveHeight = 70;
 
     //----------------------------------------------------------//
@@ -35,7 +35,7 @@ class SolderBlue {
       0,
       Math.floor(this.blueMove.width / this.blueMove.frames),
       this.blueMove.height,
-      posX + 15,
+      posX,
       posY,
       this.blueMoveWidth,
       this.blueMoveHeight

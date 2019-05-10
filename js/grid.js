@@ -21,6 +21,9 @@ class Grid {
       new Solder(this.ctx, 0, 8),
       new Solder(this.ctx, 0, 9)
     ];
+    /*for(let i= 0; i<10;i++){
+      new Solder(this.ctx,0, i)
+    } */
     this.solderBlue = [
       new SolderBlue(this.ctx, 14, 0),
       new SolderBlue(this.ctx, 14, 1),
@@ -44,7 +47,7 @@ class Grid {
       }
     }
     this.showSolder();
-    this.solderSelect();
+
     // this.moveRedGrass();
     // this.moveBlueGrass();
     //this.moveSolder();
@@ -314,6 +317,7 @@ class Grid {
       11,
       this.solderCheckBlue
     ];
+    // this.solderSelect();
   }
 
   //------para matar soldados Azules------//
@@ -454,18 +458,22 @@ class Grid {
     }
     this.draw();
   }
-  solderSelect() {
-    document.getElementById("bluePlayer").innerHTML = `<p>${
-      this.solderBlue[0]
-    }</p>`;
-    document.getElementById("bluePlayer").innerHTML += `<p>${
-      this.solderBlue[0]
-    }</p>`;
-    document.getElementById("redPlayer").innerHTML = `<p>${this.solder[0]}</p>`;
-    document.getElementById("redPlayer").innerHTML += `<p>${
-      this.solder[1]
-    }</p>`;
-  }
+  // solderSelect() {
+  //   for (let i = 0; i < this.solderBlue.length; i++) {
+  //     document.getElementById(
+  //       "bluePlayer"
+  //     ).innerHTML = `<button><img src="images/blue solder idle.png"${
+  //       this.solderBlue[0]
+  //     }</button>`;
+  //   }
+  //   for (let j = 0; j < this.solder.length; j++) {
+  //     document.getElementById(
+  //       "redPlayer"
+  //     ).innerHTML += `<button><img src="images/red solder idle.png"${
+  //       this.solderBlue[0]
+  //     }</button>`;
+  //   }
+  // }
   playerSwich() {
     if (this.turn == "red") {
       this.solder.forEach(solder => (solder.moveCounter = 0));
@@ -498,6 +506,3 @@ class Grid {
     }
   }
 }
-
-// document.getElementById("canvas").className = "display";
-// document.getElementById("gameover").className = "";

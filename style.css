@@ -34,6 +34,13 @@ body button {
   width: 1200px;
   height: 700px;
 }
-.inlineBlock {
-  display: flex;
+
+#canvas {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+.background {
+  background: black "/images/background solders.jpg" no-repeat fixed center;
 }
