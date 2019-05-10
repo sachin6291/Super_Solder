@@ -324,6 +324,7 @@ class Grid {
         1
       );
       this.arrMap[this.solderCheckRed.gridY + 1][this.solderCheckRed.gridX] = 0;
+      this.solderCheckRed.moveCounter = 0;
     }
   }
   deadBlueSolderUp() {
@@ -334,6 +335,7 @@ class Grid {
         1
       );
       this.arrMap[this.solderCheckRed.gridY - 1][this.solderCheckRed.gridX] = 0;
+      this.solderCheckRed.moveCounter = 0;
     }
   }
   deadBlueSolderLeft() {
@@ -343,6 +345,7 @@ class Grid {
         1
       );
       this.arrMap[this.solderCheckRed.gridY][this.solderCheckRed.gridX - 1] = 0;
+      this.solderCheckRed.moveCounter = 0;
     }
   }
   deadBlueSolderRight() {
@@ -352,6 +355,7 @@ class Grid {
         1
       );
       this.arrMap[this.solderCheckRed.gridY][this.solderCheckRed.gridX + 1] = 0;
+      this.solderCheckRed.moveCounter = 0;
     }
   }
   downPositionRed() {
@@ -381,6 +385,7 @@ class Grid {
       this.arrMap[this.solderCheckBlue.gridY + 1][
         this.solderCheckBlue.gridX
       ] = 0;
+      this.solderCheckBlue.moveCounter = 0;
     }
   }
   deadRedSolderUp() {
@@ -389,6 +394,7 @@ class Grid {
       this.arrMap[this.solderCheckBlue.gridY - 1][
         this.solderCheckBlue.gridX
       ] = 0;
+      this.solderCheckBlue.moveCounter = 0;
     }
   }
   deadRedSolderLeft() {
@@ -397,6 +403,7 @@ class Grid {
       this.arrMap[this.solderCheckBlue.gridY][
         this.solderCheckBlue.gridX - 1
       ] = 0;
+      this.solderCheckBlue.moveCounter = 0;
     }
   }
   deadRedSolderRight() {
@@ -405,6 +412,7 @@ class Grid {
       this.arrMap[this.solderCheckBlue.gridY][
         this.solderCheckBlue.gridX + 1
       ] = 0;
+      this.solderCheckBlue.moveCounter = 0;
     }
   }
   downPositionBlue() {
@@ -480,13 +488,13 @@ class Grid {
   gameoverBlue() {
     if (this.solderBlue.length == 0) {
       document.getElementById("canvas").className = "display";
-      document.getElementById("gameover").className = "";
+      document.getElementById("gameoverBlue").className = "";
     }
   }
   gameoverRed() {
     if (this.solder.length == 0) {
       document.getElementById("canvas").className = "display";
-      document.getElementById("gameover").className = "";
+      document.getElementById("gameoverRed").className = "";
     }
   }
 }

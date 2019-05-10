@@ -20,10 +20,17 @@ body button {
 .display {
   display: none;
 }
-#gameover {
+#gameoverRed {
   display: absolute;
 }
-#gameover img {
+#gameoverBlue {
+  display: absolute;
+}
+#gameoverRed img {
+  width: 1200px;
+  height: 700px;
+}
+#gameoverBlue img {
   width: 1200px;
   height: 700px;
 }
