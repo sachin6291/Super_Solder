@@ -9,10 +9,29 @@ class Grid {
     this.img = new Image();
     this.img.src = "images/tile_grass.png";
     this.arrMap = [];
-    this.solder = [new Solder(this.ctx, 0, 0), new Solder(this.ctx, 0, 1)];
+    this.solder = [
+      new Solder(this.ctx, 0, 0),
+      new Solder(this.ctx, 0, 1),
+      new Solder(this.ctx, 0, 2),
+      new Solder(this.ctx, 0, 3),
+      new Solder(this.ctx, 0, 4),
+      new Solder(this.ctx, 0, 5),
+      new Solder(this.ctx, 0, 6),
+      new Solder(this.ctx, 0, 7),
+      new Solder(this.ctx, 0, 8),
+      new Solder(this.ctx, 0, 9)
+    ];
     this.solderBlue = [
-      new SolderBlue(this.ctx, 1, 1),
-      new SolderBlue(this.ctx, 1, 3)
+      new SolderBlue(this.ctx, 14, 0),
+      new SolderBlue(this.ctx, 14, 1),
+      new SolderBlue(this.ctx, 14, 2),
+      new SolderBlue(this.ctx, 14, 3),
+      new SolderBlue(this.ctx, 14, 4),
+      new SolderBlue(this.ctx, 14, 5),
+      new SolderBlue(this.ctx, 14, 6),
+      new SolderBlue(this.ctx, 14, 7),
+      new SolderBlue(this.ctx, 14, 8),
+      new SolderBlue(this.ctx, 14, 9)
     ];
     this.turn = "red";
     this.solderCheckRed = { moveCounter: 0 };
@@ -65,19 +84,17 @@ class Grid {
   }
 
   setListeners() {
-    //40 abajo, 38 arriba, 37 izquierda, 39 derecha, 32 space
+    //set key action for: 40 up , 38 down, 37 left, 39 right, 32 space, 49 one,
+    //50 two, 51 three, 52 four, 53 five, 54 six, 55 seven, 56 eight, 57 nine, 48 zero
     document.onkeydown = event => {
       if (event.keyCode == 32) {
-        console.log("entra");
         this.playerSwich();
       }
       if (event.keyCode === 49) {
         if (this.turn == "red") {
           this.solderCheckRed = this.solder[0];
-          console.log(this.solderCheckRed.moveCounter);
         } else {
           this.solderCheckBlue = this.solderBlue[0];
-          console.log(this.solderCheckBlue.moveCounter);
         }
       }
       if (event.keyCode === 50) {
@@ -87,11 +104,66 @@ class Grid {
           this.solderCheckBlue = this.solderBlue[1];
         }
       }
+      if (event.keyCode === 51) {
+        if (this.turn == "red") {
+          this.solderCheckRed = this.solder[2];
+        } else {
+          this.solderCheckBlue = this.solderBlue[2];
+        }
+      }
+      if (event.keyCode === 52) {
+        if (this.turn == "red") {
+          this.solderCheckRed = this.solder[3];
+        } else {
+          this.solderCheckBlue = this.solderBlue[3];
+        }
+      }
+      if (event.keyCode === 53) {
+        if (this.turn == "red") {
+          this.solderCheckRed = this.solder[4];
+        } else {
+          this.solderCheckBlue = this.solderBlue[4];
+        }
+      }
+      if (event.keyCode === 54) {
+        if (this.turn == "red") {
+          this.solderCheckRed = this.solder[5];
+        } else {
+          this.solderCheckBlue = this.solderBlue[5];
+        }
+      }
+      if (event.keyCode === 55) {
+        if (this.turn == "red") {
+          this.solderCheckRed = this.solder[6];
+        } else {
+          this.solderCheckBlue = this.solderBlue[6];
+        }
+      }
+      if (event.keyCode === 56) {
+        if (this.turn == "red") {
+          this.solderCheckRed = this.solder[7];
+        } else {
+          this.solderCheckBlue = this.solderBlue[7];
+        }
+      }
+      if (event.keyCode === 57) {
+        if (this.turn == "red") {
+          this.solderCheckRed = this.solder[8];
+        } else {
+          this.solderCheckBlue = this.solderBlue[8];
+        }
+      }
+      if (event.keyCode === 48) {
+        if (this.turn == "red") {
+          this.solderCheckRed = this.solder[9];
+        } else {
+          this.solderCheckBlue = this.solderBlue[9];
+        }
+      }
       if (
         this.solderCheckRed.moveCounter > 0 ||
         this.solderCheckBlue.moveCounter > 0
       ) {
-        // console.log("hola");
         if (event.keyCode === 40) {
           if (this.turn == "red") {
             if (
@@ -102,7 +174,7 @@ class Grid {
               this.solderCheckRed.gridY += 1;
               this.recurentListener();
             } else if (this.downPositionRed()[0] == 11) {
-              this.deadBlueSolder();
+              this.deadBlueSolderDown();
             }
           } else if (this.turn == "blue") {
             if (
@@ -113,7 +185,7 @@ class Grid {
               this.solderCheckBlue.gridY += 1;
               this.recurentListener();
             } else if (this.downPositionBlue()[0] == 1) {
-              this.deadRedSolder();
+              this.deadRedSolderDown();
             }
           }
         } else if (event.keyCode === 39) {
@@ -126,7 +198,8 @@ class Grid {
               this.solderCheckRed.gridX += 1;
               this.recurentListener();
             } else if (this.rightPositionRed()[0] == 11) {
-              this.deadBlueSolder();
+              console.log("muere rojo de derecha");
+              this.deadBlueSolderRight();
             }
           } else if (this.turn == "blue") {
             if (
@@ -143,7 +216,7 @@ class Grid {
                 this.solderCheckBlue.gridX + 1
               ][0] == 1
             ) {
-              this.deadRedSolder();
+              this.deadRedSolderRight();
             }
           }
         } else if (event.keyCode === 37) {
@@ -162,7 +235,7 @@ class Grid {
                 this.solderCheckRed.gridX - 1
               ][0] == 11
             ) {
-              this.deadBlueSolder();
+              this.deadBlueSolderLeft();
               // this.moveBlueGrass();
             }
           } else if (this.turn == "blue") {
@@ -180,7 +253,7 @@ class Grid {
                 this.solderCheckBlue.gridX - 1
               ][0] == 1
             ) {
-              this.deadRedSolder();
+              this.deadRedSolderLeft();
             }
           }
         } else if (event.keyCode === 38) {
@@ -200,7 +273,7 @@ class Grid {
                 this.solderCheckRed.gridX
               ][0] == 11
             ) {
-              this.deadBlueSolder();
+              this.deadBlueSolderUp();
               // this.moveBlueGrass();
             }
           } else if (this.turn == "blue") {
@@ -218,7 +291,7 @@ class Grid {
                 this.solderCheckBlue.gridX
               ][0] == 1
             ) {
-              this.deadRedSolder();
+              this.deadRedSolderRight();
             }
           }
         }
@@ -239,32 +312,36 @@ class Grid {
   }
 
   //------para matar soldados Azules------//
-  deadBlueSolder() {
+  deadBlueSolderDown() {
     if (this.downPositionRed()[0] != 0 && this.downPositionRed()[0] != 1) {
       this.solderBlue.splice(
         this.solderBlue.indexOf(this.downPositionRed()[1]),
         1
       );
       this.arrMap[this.solderCheckRed.gridY + 1][this.solderCheckRed.gridX] = 0;
-    } else if (this.upPositionRed()[0] != 0 && this.upPositionRed()[0] != 1) {
+    }
+  }
+  deadBlueSolderUp() {
+    if (this.upPositionRed()[0] != 0 && this.upPositionRed()[0] != 1) {
+      console.log("entra");
       this.solderBlue.splice(
         this.solderBlue.indexOf(this.upPositionRed()[1]),
         1
       );
       this.arrMap[this.solderCheckRed.gridY - 1][this.solderCheckRed.gridX] = 0;
-    } else if (
-      this.leftPositionRed()[0] != 0 &&
-      this.leftPositionRed()[0] != 1
-    ) {
+    }
+  }
+  deadBlueSolderLeft() {
+    if (this.leftPositionRed()[0] != 0 && this.leftPositionRed()[0] != 1) {
       this.solderBlue.splice(
         this.solderBlue.indexOf(this.leftPositionRed()[1]),
         1
       );
       this.arrMap[this.solderCheckRed.gridY][this.solderCheckRed.gridX - 1] = 0;
-    } else if (
-      this.rightPositionRed()[0] != 0 &&
-      this.rightPositionRed()[0] != 1
-    ) {
+    }
+  }
+  deadBlueSolderRight() {
+    if (this.rightPositionRed()[0] != 0 && this.rightPositionRed()[0] != 1) {
       this.solderBlue.splice(
         this.solderBlue.indexOf(this.rightPositionRed()[1]),
         1
@@ -293,32 +370,32 @@ class Grid {
     ];
   }
   //------para matar soldados Rojos------//
-  deadRedSolder() {
+  deadRedSolderDown() {
     if (this.downPositionBlue()[0] != 0 && this.downPositionBlue()[0] != 11) {
       this.solder.splice(this.solder.indexOf(this.downPositionBlue()[1]), 1);
       this.arrMap[this.solderCheckBlue.gridY + 1][
         this.solderCheckBlue.gridX
       ] = 0;
-    } else if (
-      this.upPositionBlue()[0] != 0 &&
-      this.upPositionBlue()[0] != 11
-    ) {
+    }
+  }
+  deadRedSolderUp() {
+    if (this.upPositionBlue()[0] != 0 && this.upPositionBlue()[0] != 11) {
       this.solder.splice(this.solder.indexOf(this.upPositionBlue()[1]), 1);
       this.arrMap[this.solderCheckBlue.gridY - 1][
         this.solderCheckBlue.gridX
       ] = 0;
-    } else if (
-      this.leftPositionBlue()[0] != 0 &&
-      this.leftPositionBlue()[0] != 11
-    ) {
+    }
+  }
+  deadRedSolderLeft() {
+    if (this.leftPositionBlue()[0] != 0 && this.leftPositionBlue()[0] != 11) {
       this.solder.splice(this.solder.indexOf(this.leftPositionBlue()[1]), 1);
       this.arrMap[this.solderCheckBlue.gridY][
         this.solderCheckBlue.gridX - 1
       ] = 0;
-    } else if (
-      this.rightPositionBlue()[0] != 0 &&
-      this.rightPositionBlue()[0] != 11
-    ) {
+    }
+  }
+  deadRedSolderRight() {
+    if (this.rightPositionBlue()[0] != 0 && this.rightPositionBlue()[0] != 11) {
       this.solder.splice(this.solder.indexOf(this.rightPositionBlue()[1]), 1);
       this.arrMap[this.solderCheckBlue.gridY][
         this.solderCheckBlue.gridX + 1

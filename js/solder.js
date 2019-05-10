@@ -4,8 +4,8 @@ class Solder {
 
     this.img = new Image();
     this.img.src = "images/moving solder.png";
-    this.posX = 55;
-    this.posY = 40;
+    // this.posX = 55;
+    // this.posY = 40;
 
     this.img.frames = 6;
     this.img.frameIndex = 0;
